@@ -16,6 +16,8 @@
             }
 
         }
+
+
         private float Balance = 0;
         public float balance
         {  
@@ -31,15 +33,35 @@
         }
 
 
+
+        public BankAccount(float _balance)
+        {
+            Balance = _balance;
+        }
+
         public void Credit(int balanceIn)
         {
             Balance += balanceIn;
         }
         public void Debit(int balanceOut)
         {
+            
             if (!Frozen)
             {
-                Balance -= balanceOut;
+                float bsave = Balance - balanceOut;
+                if (bsave >= 0)
+                {
+                    Balance -= balanceOut;
+                }
+                else
+                {
+                   throw new ArgumentOutOfRangeException("Insufficent Funds");
+                }
+                    
+            }
+            else
+            {
+                throw new ArgumentOutOfRangeException("Frozen");
             }
         }
 
