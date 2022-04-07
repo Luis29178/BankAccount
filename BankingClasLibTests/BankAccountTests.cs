@@ -22,7 +22,7 @@ namespace BankAccount.Tests
             catch (ArgumentOutOfRangeException e)
             {
 
-                StringAssert.Contains(e.Message, "Insufficent Funds");               
+                StringAssert.Contains(e.Message, "Fail");               
                 return;
             }
             Assert.Fail();
@@ -30,6 +30,8 @@ namespace BankAccount.Tests
 
 
         }
+
+
         [TestMethod()]
         public void BGTHundK()
         {
@@ -41,7 +43,7 @@ namespace BankAccount.Tests
             catch (ArgumentOutOfRangeException e)
             {
 
-                StringAssert.Contains(e.Message, "Communism");
+                StringAssert.Contains(e.Message, "Fail");
                 return;
             }
             Assert.Fail();
@@ -50,8 +52,117 @@ namespace BankAccount.Tests
 
         }
 
+
         [TestMethod()]
-        public void AccountFrozen()
+        public void validCTransA()
+        {
+            BankAccount bankAccount = new BankAccount(200);       
+            bool test = bankAccount.Credit(40);
+            Assert.IsTrue(test);
+           
+        }
+
+
+        [TestMethod()]
+        public void validCTransB()
+        {
+            BankAccount bankAccount = new BankAccount(200);
+            try
+            {
+                bankAccount.Credit(0);
+            }
+            catch (ArgumentOutOfRangeException e)
+            {
+
+                StringAssert.Contains(e.Message, "Fail");
+            }
+           
+        }
+
+
+        [TestMethod()]
+        public void validCTransC()
+        {
+            BankAccount bankAccount = new BankAccount(200);
+            try
+            {
+                bankAccount.Credit(10000);
+            }
+            catch (ArgumentOutOfRangeException e)
+            {
+
+                StringAssert.Contains(e.Message, "Fail");
+            }
+
+        }
+
+
+        [TestMethod()]
+        public void AccountFrozenC()
+        {
+            BankAccount bankAccount = new BankAccount(200);
+            bankAccount.frozen = true;
+            try
+            {
+                bankAccount.Credit(43);
+            }
+            catch (ArgumentOutOfRangeException e)
+            {
+
+                StringAssert.Contains(e.Message, "Fail");
+                return;
+            }
+            Assert.Fail();
+
+        }
+
+
+        [TestMethod()]
+        public void validDTransA()
+        {
+            BankAccount bankAccount = new BankAccount(200);
+            bool test = bankAccount.Debit(40);
+            Assert.IsTrue(test);
+
+        }
+
+
+        [TestMethod()]
+        public void validDTransB()
+        {
+            BankAccount bankAccount = new BankAccount(200);
+            try
+            {
+                bankAccount.Debit(0);
+            }
+            catch (ArgumentOutOfRangeException e)
+            {
+
+                StringAssert.Contains(e.Message, "Fail");
+            }
+
+        }
+
+
+        [TestMethod()]
+        public void validDTransC()
+        {
+            BankAccount bankAccount = new BankAccount(200);
+            try
+            {
+                bankAccount.Debit(0);
+            }
+            catch (ArgumentOutOfRangeException e)
+            {
+
+                StringAssert.Contains(e.Message, "Fail");
+            }
+
+        }
+
+
+        [TestMethod()]
+        public void AccountFrozenD()
         {
             BankAccount bankAccount = new BankAccount(200);
             bankAccount.frozen = true;
@@ -62,29 +173,15 @@ namespace BankAccount.Tests
             catch (ArgumentOutOfRangeException e)
             {
 
-                StringAssert.Contains(e.Message, "Frozen");
+                StringAssert.Contains(e.Message, "Fail");
                 return;
             }
             Assert.Fail();
 
         }
 
-        [TestMethod()]
-        public void validCTrans()
-        {
-            BankAccount bankAccount = new BankAccount(200);       
-            bool test = bankAccount.Credit(40);
-            Assert.IsTrue(test);
-           
-        }
-        [TestMethod()]
-        public void validDTrans()
-        {
-            BankAccount bankAccount = new BankAccount(200);
-            bool test = bankAccount.Debit(40);
-            Assert.IsTrue(test);
 
-        }
+       
 
     }
 }

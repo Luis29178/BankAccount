@@ -42,28 +42,43 @@
             }
             else
             {
-                throw new ArgumentOutOfRangeException("Communism");
+                throw new ArgumentOutOfRangeException("Fail");
             }
         }
 
         public bool Credit(int balanceIn)
         {
-            float bsave = Balance + balanceIn;
-            if (bsave <= 100000)
+            if (balanceIn <= 0 || balanceIn >= 10000)
             {
-                Balance += balanceIn;
-                return true;
+                throw new ArgumentOutOfRangeException("Fail");
+            }
+
+            if (!Frozen)
+            {
+                float bsave = Balance + balanceIn;
+                if (bsave <= 100000)
+                {
+                    Balance += balanceIn;
+                    return true;
+                }
+                else
+                {
+                    throw new ArgumentOutOfRangeException("Fail");
+                }
+
             }
             else
             {
-                throw new ArgumentOutOfRangeException("Communism");
+                throw new ArgumentOutOfRangeException("Fail");
             }
-
 
         }
         public bool Debit(int balanceOut)
         {
-
+            if (balanceOut <= 0 || balanceOut >= 10000)
+            {
+                throw new ArgumentOutOfRangeException("Fail");
+            }
             if (!Frozen)
             {
                 float bsave = Balance - balanceOut;
@@ -74,13 +89,13 @@
                 }
                 else
                 {
-                    throw new ArgumentOutOfRangeException("Insufficent Funds");
+                    throw new ArgumentOutOfRangeException("Fail");
                 }
                 
             }
             else
             {
-                throw new ArgumentOutOfRangeException("Frozen");
+                throw new ArgumentOutOfRangeException("Fail");
             }
         }
 
