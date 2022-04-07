@@ -36,12 +36,28 @@
 
         public BankAccount(float _balance)
         {
-            Balance = _balance;
+            if (_balance <= 100000 && _balance >= 0)
+            {
+                Balance = _balance;
+            }
+            else
+            {
+                throw new ArgumentOutOfRangeException("Communism");
+            }
         }
 
         public void Credit(int balanceIn)
         {
-            Balance += balanceIn;
+            float bsave = Balance + balanceIn;
+            if (bsave <= 100000)
+            {
+                Balance += balanceIn;
+            }
+            else 
+            {
+                throw new ArgumentOutOfRangeException("Communism");
+            }
+            
         }
         public void Debit(int balanceOut)
         {

@@ -30,6 +30,25 @@ namespace BankAccount.Tests
 
 
         }
+        [TestMethod()]
+        public void BGTHundK()
+        {
+            BankAccount bankAccount = new BankAccount(100000);
+            try
+            {
+                bankAccount.Credit(20);
+            }
+            catch (ArgumentOutOfRangeException e)
+            {
+
+                StringAssert.Contains(e.Message, "Communism");
+                return;
+            }
+            Assert.Fail();
+
+
+
+        }
 
         [TestMethod()]
         public void AccountFrozen()
