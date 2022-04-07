@@ -61,7 +61,7 @@
 
 
         }
-        public void Debit(int balanceOut)
+        public bool Debit(int balanceOut)
         {
 
             if (!Frozen)
@@ -70,12 +70,13 @@
                 if (bsave >= 0)
                 {
                     Balance -= balanceOut;
+                    return true;
                 }
                 else
                 {
                     throw new ArgumentOutOfRangeException("Insufficent Funds");
                 }
-
+                
             }
             else
             {

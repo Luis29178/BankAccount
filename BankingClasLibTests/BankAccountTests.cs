@@ -77,6 +77,14 @@ namespace BankAccount.Tests
             Assert.IsTrue(test);
            
         }
+        [TestMethod()]
+        public void validDTrans()
+        {
+            BankAccount bankAccount = new BankAccount(200);
+            bool test = bankAccount.Debit(40);
+            Assert.IsTrue(test);
+
+        }
 
     }
 }
