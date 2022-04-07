@@ -68,5 +68,15 @@ namespace BankAccount.Tests
             Assert.Fail();
 
         }
+
+        [TestMethod()]
+        public void validCTrans()
+        {
+            BankAccount bankAccount = new BankAccount(200);       
+            bool test = bankAccount.Credit(40);
+            Assert.IsTrue(test);
+           
+        }
+
     }
 }

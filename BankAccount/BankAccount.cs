@@ -2,7 +2,7 @@
 {
     public class BankAccount
     {
- 
+
         private bool Frozen = false;
         public bool frozen
         {
@@ -20,16 +20,16 @@
 
         private float Balance = 0;
         public float balance
-        {  
-            get 
-            { 
-               return Balance; 
-            }               
-            set 
+        {
+            get
             {
-               Balance = value; 
-            }    
-        
+                return Balance;
+            }
+            set
+            {
+                Balance = value;
+            }
+
         }
 
 
@@ -46,22 +46,24 @@
             }
         }
 
-        public void Credit(int balanceIn)
+        public bool Credit(int balanceIn)
         {
             float bsave = Balance + balanceIn;
             if (bsave <= 100000)
             {
                 Balance += balanceIn;
+                return true;
             }
-            else 
+            else
             {
                 throw new ArgumentOutOfRangeException("Communism");
             }
-            
+
+
         }
         public void Debit(int balanceOut)
         {
-            
+
             if (!Frozen)
             {
                 float bsave = Balance - balanceOut;
@@ -71,9 +73,9 @@
                 }
                 else
                 {
-                   throw new ArgumentOutOfRangeException("Insufficent Funds");
+                    throw new ArgumentOutOfRangeException("Insufficent Funds");
                 }
-                    
+
             }
             else
             {
