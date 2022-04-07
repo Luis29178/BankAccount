@@ -34,11 +34,11 @@ namespace BankAccount.Tests
         [TestMethod()]
         public void AccountFrozen()
         {
-            BankAccount bankAccount = new BankAccount(0);
+            BankAccount bankAccount = new BankAccount(200);
             bankAccount.frozen = true;
             try
             {
-                bankAccount.Debit(20);
+                bankAccount.Debit(43);
             }
             catch (ArgumentOutOfRangeException e)
             {
