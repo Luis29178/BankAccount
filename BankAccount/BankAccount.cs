@@ -2,7 +2,7 @@
 {
     public class BankAccount
     {
-        
+ 
         private bool Frozen = false;
         public bool frozen
         {
